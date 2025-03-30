@@ -16,5 +16,7 @@ public class p02475 {
 
         System.out.println(res%10);
 
+        sc.close();
+
     }
 }
