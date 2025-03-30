@@ -13,5 +13,7 @@ public class p02438 {
             System.out.println();
         }
 
+        sc.close();
+
     }
 }
