@@ -14,4 +14,4 @@ public class p03003 {
         sc.close();
 
     }
-}d
+}
