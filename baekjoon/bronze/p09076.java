@@ -9,17 +9,16 @@ public class p09076 {
         int T = Integer.parseInt(br.readLine());
         int [] scores = new int[5];
 
-        for (int i = 0; i < T; i++) {
-            String [] s = br.readLine().split(" ");
+        while (T-- >0) {
+            StringTokenizer st = new StringTokenizer(br.readLine(), " ");
             for (int k = 0; k < 5; k++) {
-                scores[k] = Integer.parseInt(s[k]);
+                scores[k] = Integer.parseInt(st.nextToken());
             }
             Arrays.sort(scores);
-            if (scores[4]-scores[1]>=4) {
-                sb.append("KIN\n");
-            } else {
-                sb.append(scores[1]+scores[2]+scores[3]+"\n");
-            }
+            sb.append( scores[4]-scores[1] >= 4
+                    ? "KIN\n"
+                    : scores[1]+scores[2]+scores[3]+"\n"
+            );
         }
 
         System.out.println(sb);
