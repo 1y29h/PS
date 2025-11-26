@@ -8,18 +8,22 @@ public class p12605 {
         StringBuilder sb = new StringBuilder();
 
         int N = Integer.parseInt(br.readLine());
+        String [] str;
+        int index;
 
         for (int i = 1; i <= N; i++) {
             st = new StringTokenizer(br.readLine(), " ");
-            Stack<String> stack = new Stack<>();
+            str = new String[25];
+            index = 0;
 
-            while (st.hasMoreTokens()) {
-                stack.push(st.nextToken());
+            while(st.hasMoreTokens()) {
+                str[index] = st.nextToken();
+                index++;
             }
 
             sb.append("Case #" + i + ": ");
-            while (!stack.isEmpty()) {
-                sb.append(stack.pop() + " ");
+            for (int j = index-1; j >= 0; j--) {
+                sb.append(str[j] + " ");
             }
             sb.append("\n");
         }
