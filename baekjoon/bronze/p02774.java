@@ -15,7 +15,7 @@ public class p02774 {
             for (int l = 0; l < 10; l++) {
                 for (int k = 0; k < X.length(); k++) {
                     // 숫자 -> 문자: 숫자 + '0' 혹은 숫자 + 48
-                    if (X.charAt(k) == (char)(l+'0')) {
+                    if (X.charAt(k) == l + '0') {
                         res++;
                         break;
                     }
