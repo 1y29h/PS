@@ -5,23 +5,25 @@ public class p02231 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-        String num;
-        int sum;
+        int num, sum;
         int YN = 0;
 
         for (int i=1; i<=N; i++) {
+            num = i;
             sum = i;
-            num = String.valueOf(i);
-            for (int j=0; j<num.length(); j++) {
-                sum += Integer.parseInt(String.valueOf(num.charAt(j)));
+
+            while(num>0) {
+                sum += num % 10;
+                num /= 10;
             }
-            if (sum == N) {
+
+            if (N == sum) {
                 YN = i;
                 break;
             }
         }
 
-        System.out.println(YN);
+        System.out.print(YN);
 
     }
 }
