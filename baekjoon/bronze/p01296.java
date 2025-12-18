@@ -2,65 +2,54 @@ import java.io.*;
 
 public class p01296 {
 
-    static int L = 0;
-    static int O = 0;
-    static int V = 0;
-    static int E = 0;
+    static int[] yGreenNum = new int[4];
 
-    static int Probability(int tL, int tO, int tV, int tE) {
-        return ((tL+L + tO+O) * (tL+L + tV+V) * (tL+L + tE+E) * (tO+O + tV+V) * (tO+O + tE+E) * (tV+V + tE+E)) % 100;
+    static int Probability(int[] count) {
+        int L = yGreenNum[0] + count[0];
+        int O = yGreenNum[1] + count[1];
+        int V = yGreenNum[2] + count[2];
+        int E = yGreenNum[3] + count[3];
+
+        return ((L+O) * (L+V) * (L+E) * (O+V) * (O+E) * (V+E) % 100);
+    }
+
+    static int [] Count(String name) {
+        int[] count = new int[4];
+        char ch;
+
+        for (int i=0; i<name.length(); i++) {
+            ch = name.charAt(i);
+            if (ch == 'L') count[0]++;
+            else if (ch == 'O') count[1]++;
+            else if (ch == 'V') count[2]++;
+            else if (ch == 'E') count[3]++;
+        }
+
+        return count;
     }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         String yGreen = br.readLine();
+        yGreenNum = Count(yGreen);
+
         int N = Integer.parseInt(br.readLine());
-
-        String team;
-        int tL, tO, tV, tE;
-
-        int score = 0;
+        String name;
         String win = "";
-
-        for (int i=0; i<yGreen.length(); i++) {
-            if (yGreen.charAt(i) == 'L') L++;
-            else if (yGreen.charAt(i) == 'O') O++;
-            else if (yGreen.charAt(i) == 'V') V++;
-            else if (yGreen.charAt(i) == 'E') E++;
-        }
+        int score = -1;
+        int probability;
 
         for (int i=0; i<N; i++) {
-            team = br.readLine();
-
-            tL = 0;
-            tO = 0;
-            tV = 0;
-            tE = 0;
-
-            for (int j=0; j<team.length(); j++) {
-                if (team.charAt(j) == 'L') {
-                    tL++;
-                } else if (team.charAt(j) == 'O') {
-                    tO++;
-                } else if (team.charAt(j) == 'V') {
-                    tV++;
-                } else if (team.charAt(j) == 'E') {
-                    tE++;
-                }
-            }
-            if (score < Probability(tL, tO, tV, tE) || win.equals("")) {
-                score = Probability(tL, tO, tV, tE);
-                win = team;
-            } else if (score == Probability(tL, tO, tV, tE)) {
-                if (win.compareTo(team) > 0) {
-                    score = Probability(tL, tO, tV, tE);
-                    win = team;
-                }
+            name = br.readLine();
+            probability = Probability(Count(name));
+            if ((probability > score) || ((probability == score) && win.compareTo(name) > 0)) {
+                win = name;
+                score = probability;
             }
         }
 
-        System.out.print(win);
+        System.out.println(win);
 
     }
 }
