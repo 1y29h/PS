@@ -1,4 +1,4 @@
-public class p12932 {
+public class p012932 {
 
     // ----------------------------------------------------------------------
     // https://school.programmers.co.kr/learn/courses/30/lessons/12932
