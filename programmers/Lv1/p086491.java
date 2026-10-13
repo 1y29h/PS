@@ -1,6 +1,12 @@
 import java.util.*;
 
 public class p086491 {
+
+    // ----------------------------------------------------------------------
+    // https://school.programmers.co.kr/learn/courses/30/lessons/86491
+    // 최소직사각형
+    // ----------------------------------------------------------------------
+
     public int solution(int[][] sizes) {
         int height = 0;
         int width = 0;
