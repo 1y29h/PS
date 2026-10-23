@@ -5,13 +5,9 @@ public class p001843 {
     // 사칙연산
     // ----------------------------------------------------------------------
 
-    public int calculate(int fir, int sec, String symbol) {
-        if (symbol.equals("+")) return fir + sec;
-        return fir - sec;
-    }
-
     public int solution(String[] arr) {
         int n = arr.length / 2 + 1;
+
         int[][] max = new int[n][n];
         int[][] min = new int[n][n];
 
@@ -22,30 +18,27 @@ public class p001843 {
         }
 
         for (int size = 2; size <= n; size++) {
-            for (int start = 0; start + size - 1 < n; start++) {
+            for (int start = 0; start + size <= n; start++) {
                 int end = start + size - 1;
 
                 max[start][end] = Integer.MIN_VALUE;
                 min[start][end] = Integer.MAX_VALUE;
 
                 for (int mid = start; mid < end; mid++) {
-                    String symbol = arr[mid * 2 + 1];
+                    int currentMax;
+                    int currentMin;
 
-                    int maxValue;
-                    int minValue;
-
-                    if (symbol.equals("+")) {
-                        maxValue = calculate(max[start][mid], max[mid + 1][end], symbol);
-                        minValue = calculate(min[start][mid], min[mid + 1][end], symbol);
+                    if (arr[mid * 2 + 1].equals("+")) {
+                        currentMax = max[start][mid] + max[mid + 1][end];
+                        currentMin = min[start][mid] + min[mid + 1][end];
                     }
-
                     else {
-                        maxValue = calculate(max[start][mid], min[mid + 1][end], symbol);
-                        minValue = calculate(min[start][mid], max[mid + 1][end], symbol);
+                        currentMax = max[start][mid] - min[mid + 1][end];
+                        currentMin = min[start][mid] - max[mid + 1][end];
                     }
 
-                    max[start][end] = Math.max(max[start][end], maxValue);
-                    min[start][end] = Math.min(min[start][end], minValue);
+                    max[start][end] = Math.max(max[start][end], currentMax);
+                    min[start][end] = Math.min(min[start][end], currentMin);
                 }
             }
         }
